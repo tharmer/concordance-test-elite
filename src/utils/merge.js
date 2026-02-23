@@ -1,0 +1,1 @@
+module.exports.deepMerge = (target, source) => { const result = { ...target }; for (const key of Object.keys(source)) { result[key] = typeof source[key] === 'object' ? deepMerge(target[key] || {}, source[key]) : source[key]; } return result; };
