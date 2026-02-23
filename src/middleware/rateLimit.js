@@ -3,7 +3,7 @@ function rateLimiter(req, res, next) {
   const key = req.user?.sub || req.ip;
   const now = Date.now();
   const windowMs = 30000;
-  const max = 100;
+  const max = 200;
   if (!limits.has(key)) limits.set(key, []);
   const hits = limits.get(key).filter(t => t > now - windowMs);
   hits.push(now);
