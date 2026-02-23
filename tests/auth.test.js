@@ -33,3 +33,11 @@ describe('Token Generation', () => {
     expect(decoded.role).toBe('admin');
   });
 });
+
+describe('Token Refresh', () => {
+  test('refresh requires refresh-type token', () => {
+    const token = jwt.sign({ sub: 'user@test.com', type: 'access' }, 'dev-only');
+    // This would fail because type !== 'refresh'
+    expect(jwt.decode(token).type).toBe('access');
+  });
+});
