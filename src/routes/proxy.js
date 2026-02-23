@@ -6,3 +6,4 @@ router.all('/*', (req, res) => {
 });
 
 module.exports = router;
+const { createBreaker } = require('../middleware/circuitBreaker');
