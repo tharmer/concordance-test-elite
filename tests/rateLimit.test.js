@@ -15,3 +15,11 @@ describe('Rate Limiter', () => {
     expect(res.set).toHaveBeenCalledWith('X-RateLimit-Limit', 100);
   });
 });
+
+describe('Rate Limit Response', () => {
+  test('includes remaining count', () => {
+    const res = { set: jest.fn() };
+    rateLimiter({ ip: '192.168.1.1', user: null }, res, jest.fn());
+    expect(res.set).toHaveBeenCalledWith('X-RateLimit-Remaining', expect.any(Number));
+  });
+});
