@@ -24,3 +24,12 @@ describe('Auth Middleware', () => {
     expect(res.status).toHaveBeenCalledWith(401);
   });
 });
+
+describe('Token Generation', () => {
+  test('generates token with correct claims', () => {
+    const token = jwt.sign({ sub: 'user@test.com', role: 'admin' }, 'dev-only');
+    const decoded = jwt.decode(token);
+    expect(decoded.sub).toBe('user@test.com');
+    expect(decoded.role).toBe('admin');
+  });
+});
